@@ -6,11 +6,20 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+team_name = 'Alec&Chino' # Only 10 chars displayed.
+strategy_name = 'you thought'
+strategy_description = 'Collude the whole time till the very last one'
     
 def move(my_history, their_history, my_score, their_score):
+    if len(my_history)==0: # It's the first round; collude.
+        return 'c'
+
+    elif len(my_history) > 150:
+        return 'b'
+    elif my_history[-1]=='c' and their_history[-1]=='b':
+        return 'b'
+    else:
+        return 'c'
     ''' Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
     
@@ -32,7 +41,7 @@ def move(my_history, their_history, my_score, their_score):
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
-    Returns True or False, dpending on whether result was as expected.
+    Returns True or False, depending on whether result was as expected.
     '''
     real_result = move(my_history, their_history, my_score, their_score)
     if real_result == result:
