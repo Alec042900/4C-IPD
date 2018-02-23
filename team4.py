@@ -7,19 +7,11 @@
 ####
 
 team_name = 'Alec&Chino' # Only 10 chars displayed.
-strategy_name = 'you thought'
-strategy_description = 'Collude the whole time till the very last one'
+strategy_name = 'uncertain'
+strategy_description = 'depending on theit score'
     
 def move(my_history, their_history, my_score, their_score):
-    if len(my_history)==0: # It's the first round; collude.
-        return 'c'
-
-    elif len(my_history) > 150:
-        return 'b'
-    elif my_history[-1]=='c' and their_history[-1]=='b':
-        return 'b'
-    else:
-        return 'c'
+    
     ''' Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
     
@@ -34,14 +26,24 @@ def move(my_history, their_history, my_score, their_score):
     
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
-    
-    return 'c'
+
+    if their_history[-1] == 'c':
+        return 'c'
+    elif their_history[-10:]== 'bbcbbb':
+        
+        return 'b' 
+    if their_score [250]:
+        return 'b'
+    elif my_score[-100]:
+        return 'b'
+    if my_score[100]:
+        return 'c'
 
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
-    Returns True or False, depending on whether result was as expected.
+    Returns True or False, dpending on whether result was as expected.
     '''
     real_result = move(my_history, their_history, my_score, their_score)
     if real_result == result:
